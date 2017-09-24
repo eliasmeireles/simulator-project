@@ -47,9 +47,9 @@ ALTER TABLE produto
   ADD CONSTRAINT fk_produto_produto_estoque_id FOREIGN KEY (produto_estoque_id) REFERENCES produto_estoque (id);
 
 CREATE TABLE produto_descricao (
-  id         CHAR(36)     NOT NULL UNIQUE,
-  titulo     VARCHAR(150) NOT NULL,
-  produto_id CHAR(36)     NOT NULL
+  id         CHAR(36) NOT NULL UNIQUE,
+  titulo     VARCHAR(150),
+  produto_id CHAR(36) NOT NULL
 );
 
 ALTER TABLE produto_descricao
@@ -68,9 +68,9 @@ ALTER TABLE descricao_informacao
 
 CREATE TABLE produto_propaganda (
   produto_id CHAR(36)     NOT NULL,
-  titulo     VARCHAR(150) NOT NULL,
-  imagem     VARCHAR(200) NOT NULL,
-  descricao  TEXT         NOT NULL
+  titulo     VARCHAR(150) ,
+  imagem     VARCHAR(200) ,
+  descricao  TEXT
 );
 
 ALTER TABLE produto_propaganda
@@ -95,6 +95,7 @@ INSERT INTO fabricante VALUES
 INSERT INTO categoria VALUES
   ('d51543a7-b982-45f4-a1b6-c15d3782b071', 'HD'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b073', 'SSD'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b087', 'Monitor'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b072', 'Pen Drive');
 
 
