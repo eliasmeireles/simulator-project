@@ -1,5 +1,7 @@
 package br.com.systemplus.simulatorapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class ProdutoDescricao extends BaseEntity<ProdutoDescricao> {
     private List<DescricaoInformacao> descricao;
 
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="produto_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "produto_id")
+    @JsonBackReference
     public Produto getProduto() {
         return produto;
     }

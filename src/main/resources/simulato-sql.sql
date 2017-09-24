@@ -18,20 +18,20 @@ ALTER TABLE fabricante
   ADD CONSTRAINT pk_fabricante PRIMARY KEY (id);
 
 CREATE TABLE produto_estoque (
-  id         CHAR(36) NOT NULL UNIQUE,
-  quantia    INT      NOT NULL
+  id      CHAR(36) NOT NULL UNIQUE,
+  quantia INT      NOT NULL
 );
 
 ALTER TABLE produto_estoque
   ADD CONSTRAINT pk_produto_estoque PRIMARY KEY (id);
 
 CREATE TABLE produto (
-  id            CHAR(36)     NOT NULL UNIQUE,
-  nome          VARCHAR(200) NOT NULL UNIQUE,
-  valor         DECIMAL      NOT NULL,
-  categoria_id  CHAR(36)     NOT NULL,
-  fabricante_id CHAR(36)     NOT NULL,
-  produto_estoque_id CHAR(36) NOT NULL
+  id                 CHAR(36)     NOT NULL UNIQUE,
+  nome               VARCHAR(200) NOT NULL UNIQUE,
+  valor              DECIMAL      NOT NULL,
+  categoria_id       CHAR(36)     NOT NULL,
+  fabricante_id      CHAR(36)     NOT NULL,
+  produto_estoque_id CHAR(36)     NOT NULL
 );
 
 ALTER TABLE produto
@@ -84,7 +84,18 @@ CREATE TABLE imagens (
 ALTER TABLE imagens
   ADD CONSTRAINT fk_imagens_produto_id FOREIGN KEY (produto_id) REFERENCES produto (id);
 
+INSERT INTO fabricante VALUES
+  ('d51543a7-b982-45f4-a1b6-c15d3782b071', 'Samsungue'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b073', 'Asus'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b076', 'LG'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b077', 'Apple'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b079', 'Lenovo'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b072', 'Motorola');
 
+INSERT INTO categoria VALUES
+  ('d51543a7-b982-45f4-a1b6-c15d3782b071', 'HD'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b073', 'SSD'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b072', 'Pen Drive');
 
 
 

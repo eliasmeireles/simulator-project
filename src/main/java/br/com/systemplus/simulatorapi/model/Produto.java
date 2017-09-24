@@ -1,5 +1,6 @@
 package br.com.systemplus.simulatorapi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -36,7 +37,7 @@ public class Produto extends BaseEntity<Produto> {
         this.valor = valor;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "categoria_id")
     @RestResource(exported = false)
     public Categoria getCategoria() {
@@ -47,7 +48,7 @@ public class Produto extends BaseEntity<Produto> {
         this.categoria = categoria;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "fabricante_id")
     @RestResource(exported = false)
     public Fabricante getFabricante() {
@@ -71,7 +72,7 @@ public class Produto extends BaseEntity<Produto> {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @RestResource(exported = false)
-    @JoinColumn(name="produto_estoque_id")
+    @JoinColumn(name = "produto_estoque_id")
     public ProdutoEstoque getProdutoEstoque() {
         return produtoEstoque;
     }
@@ -90,7 +91,9 @@ public class Produto extends BaseEntity<Produto> {
         this.produtoPropagandas = produtoPropagandas;
     }
 
-    @OneToMany(mappedBy="produto")
+    @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @Column(nullable = true)
+    @JsonManagedReference
     public List<ProdutoDescricao> getProdutoDescricao() {
         return produtoDescricao;
     }
@@ -99,8 +102,28 @@ public class Produto extends BaseEntity<Produto> {
         this.produtoDescricao = produtoDescricao;
     }
 
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", valor=" + valor +
+                ", categoria=" + categoria +
+                ", fabricante=" + fabricante +
+                ", imagens=" + imagens +
+                ", produtoEstoque=" + produtoEstoque +
+                ", produtoPropagandas=" + produtoPropagandas +
+                ", produtoDescricao=" + produtoDescricao +
+                '}';
+    }
+
     @Override
     public void updateBasedOn(Produto target) {
 
+    }
+
+    @PrePersist
+    public void pre() {
+        produtoDescricao.forEach(pd -> pd.setProduto(this));
     }
 }

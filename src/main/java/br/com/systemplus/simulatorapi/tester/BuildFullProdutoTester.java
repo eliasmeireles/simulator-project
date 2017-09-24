@@ -4,7 +4,10 @@ import br.com.systemplus.simulatorapi.model.*;
 import br.com.systemplus.simulatorapi.service.ProdutoDescricaoService;
 import br.com.systemplus.simulatorapi.service.ProdutoService;
 
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BuildFullProdutoTester {
@@ -13,10 +16,10 @@ public class BuildFullProdutoTester {
 
         Produto produto = new Produto();
         Categoria categoria = new Categoria();
-        categoria.setNome("HD");
+        categoria.setId("d51543a7-b982-45f4-a1b6-c15d3782b071");
 
         Fabricante fabricante = new Fabricante();
-        fabricante.setNome("Samsungue");
+        fabricante.setId("d51543a7-b982-45f4-a1b6-c15d3782b071");
 
         ProdutoPropaganda produtoPropaganda = new ProdutoPropaganda();
         produtoPropaganda.setTitulo("Desempenho!");
@@ -66,15 +69,17 @@ public class BuildFullProdutoTester {
 
 
 
-        produtoDescricaoList.add(produtoDescricao);
-        produtoDescricaoList.add(produtoDescricao1);
 
         ProdutoEstoque produtoEstoque = new ProdutoEstoque();
         produtoEstoque.setQuantia(250);
 
         produto.setProdutoEstoque(produtoEstoque);
 
+        produtoDescricaoList.add(produtoDescricao);
+        produtoDescricaoList.add(produtoDescricao1);
         produto.setProdutoDescricao(produtoDescricaoList);
+
+
 
         return produtoService.save(produto);
 
