@@ -1,0 +1,35 @@
+version: "3.1"
+
+services:
+  simulator-api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: eliasmeireles/simulator-api
+    container_name: simulato-api
+    environment:
+      DATABASE_URL: postgres-data
+    ports:
+     - "8080:8080"
+    networks:
+      - simulator-api-network
+    depends_on:
+      - postgres-data
+
+  postgres-data:
+      image: postgres:9.6
+      container_name: postgres-data
+      user: postgres
+      ports:
+        - "36361:5432"
+      volumes:
+        - /var/lib/postgresql/data
+      networks:
+        - simulator-api-network
+
+
+networks:
+  simulator-api-network:
+    driver: bridge
+
+

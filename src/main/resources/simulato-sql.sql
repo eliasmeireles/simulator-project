@@ -78,7 +78,7 @@ ALTER TABLE produto_propaganda
 
 CREATE TABLE imagens (
   produto_id CHAR(36)     NOT NULL,
-  imagem     VARCHAR(300) NOT NULL UNIQUE
+  imagem     VARCHAR(300) NOT NULL
 );
 
 ALTER TABLE imagens
@@ -88,6 +88,7 @@ INSERT INTO fabricante VALUES
   ('d51543a7-b982-45f4-a1b6-c15d3782b071', 'Samsungue'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b073', 'Asus'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b076', 'LG'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b475', 'MSI'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b077', 'Apple'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b079', 'Lenovo'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b072', 'Motorola');
@@ -95,16 +96,6 @@ INSERT INTO fabricante VALUES
 INSERT INTO categoria VALUES
   ('d51543a7-b982-45f4-a1b6-c15d3782b071', 'HD'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b073', 'SSD'),
+  ('d51543a7-b982-45f4-a1b6-c15d3782b257', 'Placa de Video'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b087', 'Monitor'),
   ('d51543a7-b982-45f4-a1b6-c15d3782b072', 'Pen Drive');
-
-
-
-
-
-
-
-
-
-
-
